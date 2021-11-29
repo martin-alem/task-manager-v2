@@ -39,6 +39,7 @@ html {
 
 body {
   width: 100%;
+  min-height: 100%;
   background-color: var(--color-background);
 }
 
@@ -132,6 +133,17 @@ body {
 }
 
 /*
+   TASK
+*/
+
+.main-container .task-container {
+  grid-area: Side;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+}
+
+/*
  Utility
 */
 .hide {
@@ -153,11 +165,48 @@ body {
     margin: 0;
     box-shadow: none;
   }
+
+  .main-container .tab-container .tab-item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
   .main-container .header .menu-icon {
     display: block;
     opacity: 1;
+  }
+
+  .main-container .task-container {
+    display: none;
+  }
+
+  .main-container {
+    grid-template-areas:
+      "header header header header header header header header header header header header"
+      "Nav    Nav    Nav    Nav    Nav    Nav    Nav    Nav    Nav    Nav    Nav    Nav"
+      "Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main"
+      "Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main"
+      "Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main"
+      "Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main"
+      "Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main"
+      "Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main"
+      "Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main"
+      "Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main"
+      "Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main"
+      "Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main   Main";
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .main-container .tab-container .tab-item-container .icon {
+    font-size: 3.5rem;
+  }
+
+  .main-container .tab-container .tab-item-container .tab-text {
+    display: none;
   }
 }
