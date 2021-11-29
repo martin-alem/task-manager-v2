@@ -1,0 +1,71 @@
+/*
+  css reset rule
+*/
+html {
+  font-size: 10px;
+  font-family: "Merienda", cursive;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/*
+  css variables
+*/
+:root {
+  --color-background: #0b253c;
+  --color-black: #413a37;
+  --color-white: #ffffff;
+  --color-bg-button: #f5f5f2;
+  --color-text1: #839fae;
+  --color-primary: #5252b2;
+  --color-secondary: #f037a5;
+  --color-secondary-light: #c55a9a;
+  --color-danger: #ff2442;
+  --color-gray: #c8c6c6;
+  --color-completed: #3db2ff;
+  --color-postpone: #22577a;
+  --color-all: #ffb830;
+  --color-info: #3db2ff;
+  --color-danger: #ff6b6b;
+  --color-warning: #ffd371;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background);
+  width: 100vw;
+  height: 100vh;
+}
+
+/*
+  Main container
+*/
+.main-container {
+  width: 120rem;
+  max-width: 120rem;
+  height: 80rem;
+  max-height: 80rem;
+  background-color: var(--color-white);
+  margin: 5rem auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/*
+  Media Queries
+*/
+@media only screen and (max-width: 1199px) {
+  .main-container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  body {
+    background-color: var(--color-white);
+  }
+}
