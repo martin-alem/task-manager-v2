@@ -95,11 +95,52 @@ body {
 }
 
 /*
+  TAB
+*/
+
+.main-container .tab-container {
+  background-color: var(--color-bg-button);
+  grid-area: Nav;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-container .tab-container .tab-item-container {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.main-container .tab-container .tab-item-container:not(:last-child) {
+  border-right: 2px solid var(--color-black);
+}
+
+.main-container .tab-container .tab-item-container .icon {
+  font-size: 2.5rem;
+  color: var(--color-black);
+}
+
+.main-container .tab-container .tab-item-container .tab-text {
+  font-size: 1.5rem;
+  color: var(--color-black);
+  font-weight: bold;
+}
+
+/*
  Utility
 */
 .hide {
   display: none;
   opacity: 0;
+}
+
+.active-tab {
+  border-bottom: 2px solid var(--color-black);
 }
 
 /*
