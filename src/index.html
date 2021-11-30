@@ -25,29 +25,35 @@
 
       <!--NAVIGATION SECTION-->
       <div class="tab-container">
-        <div class="tab-item-container active-tab">
-          <span class="material-icons icon task-icon"> format_list_bulleted </span>
-          <span class="tab-text">Task</span>
+        <div class="tab-item-container active-tab" data-tab="tab-0">
+          <span class="material-icons icon task-icon" data-tab="tab-0"> format_list_bulleted </span>
+          <span class="tab-text" data-tab="tab-0">Task</span>
         </div>
-        <div class="tab-item-container">
-          <span class="material-icons icon task-icon"> newspaper </span>
-          <span class="tab-text">Latest News</span>
+        <div class="tab-item-container" data-tab="tab-1">
+          <span class="material-icons icon task-icon" data-tab="tab-1"> newspaper </span>
+          <span class="tab-text" data-tab="tab-1">Latest News</span>
         </div>
-        <div class="tab-item-container">
-          <span class="material-icons icon task-icon"> menu_book </span>
-          <span class="tab-text">Bible</span>
+        <div class="tab-item-container" data-tab="tab-2">
+          <span class="material-icons icon task-icon" data-tab="tab-2"> menu_book </span>
+          <span class="tab-text" data-tab="tab-2">Bible</span>
         </div>
-        <div class="tab-item-container">
-          <span class="material-icons icon task-icon"> currency_exchange </span>
-          <span class="tab-text">Currency converter</span>
+        <div class="tab-item-container" data-tab="tab-3">
+          <span class="material-icons icon task-icon" data-tab="tab-3"> currency_exchange </span>
+          <span class="tab-text" data-tab="tab-3">Currency converter</span>
         </div>
       </div>
 
-      <!--TASK SECTION-->
-      <div class="task-container">
-          
+      <!---MAIN SECTION-->
+      <div class="tab-content">
+        <div class="tab tab-0 show">Tab 1</div>
+        <div class="tab tab-1 hide">Tab 2</div>
+        <div class="tab tab-2 hide">Tab 3</div>
+        <div class="tab tab-3 hide">Tab 4</div>
       </div>
+
+      <!--TASK SECTION-->
+      <div class="task-container"> </div>
     </div>
-    <script src="js/app.ts"></script>
+    <script type="module" src="js/app.ts"></script>
   </body>
 </html>
