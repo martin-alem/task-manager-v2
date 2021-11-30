@@ -2,7 +2,7 @@
  * Functions handles the tab functionality
  * @param tabContainer container holding all tabs
  */
-function tab(tabContainer: HTMLElement): void {
+export function tab(tabContainer: HTMLElement): void {
   let currentTab: string = "tab-0";
 
   const handleContainerClick = (event: Event): void => {
@@ -18,7 +18,7 @@ function tab(tabContainer: HTMLElement): void {
         const currentTabContent: HTMLElement = document.querySelector(`.${currentTab}`);
         const newTabContent: HTMLElement = document.querySelector(`.${clickedTab}`);
 
-          //get a reference to the current tab and remove the active-tab class
+        //get a reference to the current tab and remove the active-tab class
         document.querySelector(`[data-tab = '${currentTab}']`).classList.remove("active-tab");
 
         // always access the parentElement of the tab to remove the active-tab class
@@ -38,4 +38,27 @@ function tab(tabContainer: HTMLElement): void {
   tabContainer.addEventListener("click", handleContainerClick);
 }
 
-export default tab;
+export function getDateComponents(): string[] {
+  const date: Date = new Date();
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const monthsOfYear = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const dateAsString: string = date.getDate().toString();
+  const weekDay: string = daysOfWeek[date.getDay()];
+  const month: string = monthsOfYear[date.getMonth()];
+
+  return [dateAsString, weekDay, month];
+}
