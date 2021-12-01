@@ -1,4 +1,4 @@
-import { tab, getDateComponents } from "./utils/util";
+import { tab } from "./utils/util";
 import TaskController from "./controller/TaskController";
 
 //initialize tab functionality
