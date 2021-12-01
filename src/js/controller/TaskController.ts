@@ -1,7 +1,8 @@
 import TaskView from "../view/TaskView";
 import { getDateComponents } from "../utils/util";
-import { EventHandler } from "../types/interface";
+import { EventHandler, Task } from "../types/interface";
 import TaskModel from "../model/TaskModel";
+import { v4 as uuid } from "uuid";
 
 class TaskController {
   private taskView: TaskView = new TaskView();
@@ -45,9 +46,17 @@ class TaskController {
     } else if (!validatePriority) {
       console.log("Invalid Task Priority");
     } else {
-      console.log(taskDescription);
-      console.log(taskDuration);
-      console.log(taskPriority);
+      const task: Task = {
+        taskId: uuid(),
+        taskDescription,
+        taskDuration,
+        taskPriority: parseInt(taskPriority),
+        timeStamp: Date.now(),
+      };
+
+      this.taskModel.addTask(task);
+
+      console.log(this.taskModel.getAllTask());
 
       this.taskView.setTaskDescription("");
       this.taskView.setTaskDuration("");
@@ -56,7 +65,7 @@ class TaskController {
   };
 
   private buildHandlers = (): EventHandler => {
-    const handler = {
+    const handler: EventHandler = {
       open_modal: this.openModal,
       close_modal: this.closeModal,
       submit_task: this.submitTask,

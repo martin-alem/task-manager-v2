@@ -7,4 +7,5 @@ export interface Task {
   taskDescription: string;
   taskDuration: string;
   taskPriority: number;
+  timeStamp: number;
 }

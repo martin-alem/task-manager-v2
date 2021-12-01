@@ -7,6 +7,16 @@ class TaskModel {
     this.tasks = [];
   }
 
+  public getAllTask = (): Task[] => {
+    return this.tasks;
+  };
+
+  private sortTask = (): void => {};
+
+  public addTask = (task: Task): void => {
+    this.tasks.push(task);
+  };
+
   public validateDescription = (description: string): boolean => {
     return description !== "";
   };
