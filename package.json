@@ -11,5 +11,8 @@
   "devDependencies": {
     "jest": "^27.4.0",
     "parcel": "^2.0.1"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
   }
 }
