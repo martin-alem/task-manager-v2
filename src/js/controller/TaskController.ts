@@ -16,7 +16,7 @@ class TaskController {
   };
 
   private showHideModal = (event: Event): void => {
-    console.log("Showing Modal");
+    this.taskView.toggleOverlay();
   };
 
   private buildHandlers = (): EventHandler => {
