@@ -55,7 +55,8 @@ class TaskController {
       };
 
       this.taskModel.addTask(task);
-      console.log(this.taskModel.getAllTask());
+      // const tasks: Task[] = this.taskModel.getAllTask();
+      this.taskView.renderTask(task);
 
       this.taskView.setTaskDescription("");
       this.taskView.setTaskDuration("");

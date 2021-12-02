@@ -1,18 +1,17 @@
-import { EventHandler } from "../types/interface";
+import { EventHandler, Task } from "../types/interface";
 
 class TaskView {
-  private dayOfWeek: HTMLElement = document.querySelector(".main-container .task-container .task .date-modal-button .date h2");
-  private monthOfYear: HTMLElement = document.querySelector(".main-container .task-container .task .date-modal-button .date p");
-  private openModalButton: HTMLElement = document.querySelector(
-    ".main-container .task-container .task .date-modal-button .button"
-  );
-  private overlay: HTMLElement = document.querySelector(".overlay");
-  private taskModal: HTMLElement = document.querySelector(".task_modal");
-  private closeModalButton: HTMLElement = document.querySelector(".task_modal .modal_content .cancel");
+  private dayOfWeek: Element = document.querySelector(".main-container .task-container .task .date-modal-button .date h2");
+  private monthOfYear: Element = document.querySelector(".main-container .task-container .task .date-modal-button .date p");
+  private openModalButton: Element = document.querySelector(".main-container .task-container .task .date-modal-button .button");
+  private overlay: Element = document.querySelector(".overlay");
+  private taskModal: Element = document.querySelector(".task_modal");
+  private closeModalButton: Element = document.querySelector(".task_modal .modal_content .cancel");
   private descriptionInput: HTMLInputElement = document.querySelector("#task_description");
   private durationInput: HTMLInputElement = document.querySelector("#task_duration");
   private priorityInput: HTMLInputElement = document.querySelector("#task_priority");
-  private submitButton: HTMLElement = document.querySelector("#task_submit");
+  private submitButton: Element = document.querySelector("#task_submit");
+  private taskList: Element = document.querySelector(".task-container .task .task-list");
 
   public setDayOfWeek = (dayOfWeek: string) => {
     this.dayOfWeek.textContent = dayOfWeek;
@@ -26,7 +25,7 @@ class TaskView {
     this.overlay.classList.toggle("hide");
   };
 
-  public getTaskModal = (): HTMLElement => {
+  public getTaskModal = (): Element => {
     return this.taskModal;
   };
 
@@ -52,6 +51,35 @@ class TaskView {
 
   public setTaskPriority = (value: string): void => {
     this.priorityInput.value = value;
+  };
+
+  public renderTask = (task: Task): void => {
+    const taskItemAsString = `
+              <div class="task-item">
+              <p class="task-description">This is a task description</p>
+              <div class="action">
+                <div class="more">
+                  <div class="duration"><span class="material-icons"> timer </span> <span class="duration-value">5m</span></div>
+                </div>
+                <div class="timer">
+                  <div class="timer-value">
+                    <span class="hour-value">00</span>: <span class="minute-value">00</span>:
+                    <span class="second-value">00</span>
+                  </div>
+                  <div class="timer-icon">
+                    <span class="material-icons icon-timer"> play_arrow </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+    `;
+
+    const domParser: DOMParser = new DOMParser();
+    const taskDocument: Document = domParser.parseFromString(taskItemAsString, "text/html");
+    const taskElement: Element = taskDocument.body.firstElementChild;
+    taskElement.querySelector(".task-description").textContent = task["taskDescription"];
+    taskElement.querySelector(".duration-value").textContent = task["taskDuration"];
+    this.taskList.appendChild(taskElement);
   };
 
   public registerEvent = (handlers: EventHandler): void => {
