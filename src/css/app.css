@@ -271,6 +271,102 @@ input {
   background-color: var(--color-secondary);
 }
 
+.task-container .task .task-list {
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Style scroll bars */
+.task-container .task .task-list::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.task-container .task .task-list::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px var(--color-primary);
+}
+
+.task-container .task .task-list::-webkit-scrollbar-thumb {
+  background: var(--color-white);
+  border-radius: 10px;
+}
+
+.task-container .task .task-list .task-item {
+  background-color: var(--color-bg-button);
+  width: 100%;
+
+  padding: 0.5rem 2rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 2rem;
+}
+
+.task-container .task .task-list .task-item .task-description {
+  color: var(--color-black);
+  font-size: 2rem;
+  font-weight: lighter;
+}
+
+.task-container .task .task-list .task-item .action {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-container .task .task-list .task-item .action .more {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+
+.task-container .task .task-list .task-item .action .more .priority,
+.duration,
+.details {
+  display: flex;
+  align-items: center;
+}
+
+.task-container .task .task-list .task-item .action .more .priority-value,
+.duration-value {
+  font-size: 1.6rem;
+  font-weight: bolder;
+}
+
+.task-container .task .task-list .task-item .action .timer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.task-container .task .task-list .task-item .action .timer .time-value {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-container .task .task-list .task-item .action .timer .timer-icon {
+  display: flex;
+  align-items: center;
+}
+
+.task-container .task .task-list .task-item .action .timer .timer-icon .icon-timer {
+  cursor: pointer;
+  font-size: 3.6rem;
+}
+
+.task-container .task .task-list .task-item .action .timer .time-value,
+.hour-value,
+.minute-value,
+.second-value {
+  font-size: 1.6rem;
+  font-weight: bolder;
+}
 /*
  Utility
 */
