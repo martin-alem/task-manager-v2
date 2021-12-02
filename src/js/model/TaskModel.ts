@@ -11,10 +11,29 @@ class TaskModel {
     return this.tasks;
   };
 
-  private sortTask = (): void => {};
+  private sortTask = (): void => {
+    const endIndex = this.tasks.length - 1;
+    const array = this.tasks;
+    for (let i: number = endIndex; i > 0; i--) {
+      if (array[i]["taskPriority"] < array[i - 1]["taskPriority"]) {
+        this.swap(array, i, i - 1);
+      } else if (array[i]["taskPriority"] === array[i - 1]["taskPriority"]) {
+        if (array[i]["timeStamp"] < array[i - 1]["timeStamp"]) {
+          this.swap(array, i, i - 1);
+        }
+      }
+    }
+  };
+
+  private swap = (array: Task[], startIndex: number, endIndex: number): void => {
+    [array[startIndex], array[endIndex]] = [array[endIndex], array[startIndex]];
+  };
 
   public addTask = (task: Task): void => {
     this.tasks.push(task);
+    if (this.tasks.length >= 2) {
+      this.sortTask();
+    }
   };
 
   public validateDescription = (description: string): boolean => {

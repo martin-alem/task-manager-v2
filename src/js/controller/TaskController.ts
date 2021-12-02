@@ -55,7 +55,6 @@ class TaskController {
       };
 
       this.taskModel.addTask(task);
-
       console.log(this.taskModel.getAllTask());
 
       this.taskView.setTaskDescription("");
