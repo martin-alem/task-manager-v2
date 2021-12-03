@@ -53,7 +53,13 @@ class TaskView {
     this.priorityInput.value = value;
   };
 
-  public renderTask = (task: Task): void => {
+  private updateDom = (element: Element, task: Task): void => {
+    element.setAttribute("data-key", task["taskId"]);
+    element.querySelector(".task-description").textContent = task["taskDescription"];
+    element.querySelector(".duration-value").textContent = task["taskDuration"];
+  };
+
+  public renderTask = (tasks: Task[]): void => {
     const taskItemAsString = `
               <div class="task-item">
               <p class="task-description">This is a task description</p>
@@ -73,13 +79,32 @@ class TaskView {
               </div>
             </div>
     `;
-
     const domParser: DOMParser = new DOMParser();
     const taskDocument: Document = domParser.parseFromString(taskItemAsString, "text/html");
     const taskElement: Element = taskDocument.body.firstElementChild;
-    taskElement.querySelector(".task-description").textContent = task["taskDescription"];
-    taskElement.querySelector(".duration-value").textContent = task["taskDuration"];
-    this.taskList.appendChild(taskElement);
+
+    let list: Element[] = Array.from(this.taskList.childNodes) as Array<Element>;
+    list = list.slice(1);
+
+    if (list.length === 0) {
+      tasks.forEach(task => {
+        this.updateDom(taskElement, task);
+        taskElement.addEventListener("click", () => console.log((taskElement as HTMLElement).dataset["key"]));
+        this.taskList.appendChild(taskElement);
+      });
+    } else {
+      for (let i = 0; i < list.length; i++) {
+        const element: HTMLElement = list[i] as HTMLElement;
+        const task: Task = tasks[i];
+        if (element.dataset["key"] !== task["taskId"]) {
+          this.updateDom(element as Element, task);
+        }
+      }
+
+      this.updateDom(taskElement, tasks[tasks.length - 1]);
+      taskElement.addEventListener("click", () => console.log((taskElement as HTMLElement).dataset["key"]));
+      this.taskList.appendChild(taskElement);
+    }
   };
 
   public registerEvent = (handlers: EventHandler): void => {
