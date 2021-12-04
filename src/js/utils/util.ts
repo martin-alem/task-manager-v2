@@ -62,3 +62,9 @@ export function getDateComponents(): string[] {
 
   return [dateAsString, weekDay, month];
 }
+
+export function getDurationComponents(duration: string): [number, string] {
+  const unit = duration[duration.length - 1];
+  const actualDuration = parseInt(duration.split(unit)[0]);
+  return [actualDuration, unit];
+}

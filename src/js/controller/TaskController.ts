@@ -1,7 +1,8 @@
 import TaskView from "../view/TaskView";
-import { getDateComponents } from "../utils/util";
+import { getDateComponents, getDurationComponents } from "../utils/util";
 import { EventHandler, Task } from "../types/interface";
 import TaskModel from "../model/TaskModel";
+import Timer from "../model/Timer";
 import { v4 as uuid } from "uuid";
 
 class TaskController {
@@ -64,11 +65,31 @@ class TaskController {
     }
   };
 
+  private startTimer = (event: Event): void => {
+    const targetElement: HTMLElement = event.target as HTMLElement;
+    if (targetElement.classList.contains("icon-timer")) {
+      const path: Element[] = event.composedPath() as Element[];
+      const taskItem = path[4];
+      const duration = getDurationComponents(taskItem.querySelector(".duration-value").textContent);
+      const hourElement = taskItem.querySelector(".hour-value") as HTMLElement;
+      const minuteElement = taskItem.querySelector(".minute-value") as HTMLElement;
+      const secondElement = taskItem.querySelector(".second-value") as HTMLElement;
+      const timer = Timer.getInstance(duration, hourElement, minuteElement, secondElement);
+
+      if (!timer.timerState()) {
+        timer.startTimer();
+      } else {
+        console.log("Timer is already running");
+      }
+    }
+  };
+
   private buildHandlers = (): EventHandler => {
     const handler: EventHandler = {
       open_modal: this.openModal,
       close_modal: this.closeModal,
       submit_task: this.submitTask,
+      start_timer: this.startTimer,
     };
 
     return handler;

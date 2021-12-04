@@ -56,6 +56,7 @@ class TaskView {
   private updateDom = (element: Element, task: Task): void => {
     element.setAttribute("data-key", task["taskId"]);
     element.querySelector(".task-description").textContent = task["taskDescription"];
+    element.querySelector(".priority-value").textContent = task["taskPriority"].toString(10);
     element.querySelector(".duration-value").textContent = task["taskDuration"];
   };
 
@@ -65,11 +66,14 @@ class TaskView {
               <p class="task-description">This is a task description</p>
               <div class="action">
                 <div class="more">
-                  <div class="duration"><span class="material-icons"> timer </span> <span class="duration-value">5m</span></div>
+                <div class="delete"><span class="material-icons delete-icon">delete</span></div>
+                <div class="priority"><span class="material-icons priority-icon">fact_check</span><span class="priority-value">00</span></div>
+                <div class="duration"><span class="material-icons duration-icon"> timer </span> <span class="duration-value">5m</span></div>
                 </div>
                 <div class="timer">
                   <div class="timer-value">
-                    <span class="hour-value">00</span>: <span class="minute-value">00</span>:
+                    <span class="hour-value">00</span>:
+                    <span class="minute-value">00</span>:
                     <span class="second-value">00</span>
                   </div>
                   <div class="timer-icon">
@@ -89,7 +93,6 @@ class TaskView {
     if (list.length === 0) {
       tasks.forEach(task => {
         this.updateDom(taskElement, task);
-        taskElement.addEventListener("click", () => console.log((taskElement as HTMLElement).dataset["key"]));
         this.taskList.appendChild(taskElement);
       });
     } else {
@@ -102,7 +105,6 @@ class TaskView {
       }
 
       this.updateDom(taskElement, tasks[tasks.length - 1]);
-      taskElement.addEventListener("click", () => console.log((taskElement as HTMLElement).dataset["key"]));
       this.taskList.appendChild(taskElement);
     }
   };
@@ -111,6 +113,7 @@ class TaskView {
     this.openModalButton.addEventListener("click", handlers["open_modal"]);
     this.closeModalButton.addEventListener("click", handlers["close_modal"]);
     this.submitButton.addEventListener("click", handlers["submit_task"]);
+    this.taskList.addEventListener("click", handlers["start_timer"]);
   };
 }
 

@@ -323,9 +323,9 @@ input {
   gap: 2rem;
 }
 
-.task-container .task .task-list .task-item .action .more .priority,
+.task-container .task .task-list .task-item .action .more .delete,
 .duration,
-.details {
+.priority {
   display: flex;
   align-items: center;
 }
@@ -355,7 +355,9 @@ input {
   align-items: center;
 }
 
-.task-container .task .task-list .task-item .action .timer .timer-icon .icon-timer {
+.task-container .task .task-list .task-item .action .icon-timer,
+.delete-icon,
+.priority-icon {
   cursor: pointer;
   font-size: 3.6rem;
 }
