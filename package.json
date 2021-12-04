@@ -2,7 +2,7 @@
   "name": "task-manager-v2",
   "version": "1.0.0",
   "description": "Task Manager",
-  "main": "app.js",
+  "main": "index.html",
   "scripts": {
     "start": "npx parcel src/index.html"
   },
