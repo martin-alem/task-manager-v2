@@ -1,6 +1,6 @@
 import TaskView from "../view/TaskView";
 import { getDateComponents, getDurationComponents } from "../utils/util";
-import { EventHandler, Task } from "../types/interface";
+import { EventHandler, Task, TimerState } from "../types/interface";
 import TaskModel from "../model/TaskModel";
 import Timer from "../model/Timer";
 import { v4 as uuid } from "uuid";
@@ -8,6 +8,7 @@ import { v4 as uuid } from "uuid";
 class TaskController {
   private taskView: TaskView = new TaskView();
   private taskModel: TaskModel = new TaskModel();
+  private timer: Timer = null;
 
   private updateDayOfWeek = (): void => {
     const dayOfWeek: string = getDateComponents()[1];
@@ -69,17 +70,20 @@ class TaskController {
     const targetElement: HTMLElement = event.target as HTMLElement;
     if (targetElement.classList.contains("icon-timer")) {
       const path: Element[] = event.composedPath() as Element[];
-      const taskItem = path[4];
+      const taskItem = path[4]; // this is not ideal. there must be a better way to obtain the taskItem
+      const taskId: string = (taskItem as HTMLElement).dataset["key"];
       const duration = getDurationComponents(taskItem.querySelector(".duration-value").textContent);
       const hourElement = taskItem.querySelector(".hour-value") as HTMLElement;
       const minuteElement = taskItem.querySelector(".minute-value") as HTMLElement;
       const secondElement = taskItem.querySelector(".second-value") as HTMLElement;
-      const timer = Timer.getInstance(duration, hourElement, minuteElement, secondElement);
 
-      if (!timer.timerState()) {
-        timer.startTimer();
-      } else {
-        console.log("Timer is already running");
+      if (Timer.getTimerState() === TimerState.INACTIVE) {
+        this.timer = Timer.getInstance(duration, hourElement, minuteElement, secondElement, taskId);
+        this.timer.startTimer();
+      } else if (Timer.getTimerState() === TimerState.RUNNING) {
+        this.timer.pauseTimer(taskId);
+      } else if (Timer.getTimerState() === TimerState.PAUSED) {
+        this.timer.resumeTimer(taskId);
       }
     }
   };

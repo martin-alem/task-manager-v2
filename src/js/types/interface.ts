@@ -9,3 +9,9 @@ export interface Task {
   taskPriority: number;
   timeStamp: number;
 }
+
+export enum TimerState {
+  INACTIVE = "inactive",
+  PAUSED = "paused",
+  RUNNING = "running",
+}
